@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: pgbms_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pgbms_admin
+      POSTGRES_PASSWORD: Tambler@123.co.ke
+      POSTGRES_DB: pgbms_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgbms_pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgbms_pgdata:
