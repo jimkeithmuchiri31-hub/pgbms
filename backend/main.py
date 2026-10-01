@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
-from app.routers import auth
+from app.routers import auth, members, attendance, training
 from app.rate_limit import limiter
 
 app = FastAPI(title="PGBMS API", version="0.1.0")
@@ -24,6 +24,9 @@ app.add_middleware(
 )
 
 app.include_router(auth.router)
+app.include_router(members.router)
+app.include_router(attendance.router)
+app.include_router(training.router)
 
 
 @app.get("/")

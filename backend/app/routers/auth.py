@@ -102,4 +102,5 @@ def get_me(current_user: models.User = Depends(get_current_user)):
         "username": current_user.username,
         "role": current_user.role.name,
         "must_change_password": current_user.must_change_password,
+        "program_branch": current_user.member.program_branch if current_user.member else None,
     }

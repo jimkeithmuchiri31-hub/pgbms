@@ -7,7 +7,7 @@ import { canAccessModule } from "@/lib/permissions";
 const NAV_ITEMS = [
   { label: "Members", href: "/members", module: "members", builtYet: true },
   { label: "Attendance", href: "/attendance", module: "attendance", builtYet: true },
-  { label: "Training", href: "/training", module: "training", builtYet: false },
+  { label: "Training", href: "/training", module: "training", builtYet: true },
   { label: "Finance", href: "/finance", module: "finance", builtYet: false },
   { label: "Welfare", href: "/welfare", module: "welfare", builtYet: false },
   { label: "Inventory", href: "/inventory", module: "inventory", builtYet: false },
