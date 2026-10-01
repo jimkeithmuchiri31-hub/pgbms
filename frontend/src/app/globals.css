@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-sky: #0369a1;
+  --color-brand-sky-light: #e0f2fe;
+  --color-brand-red: #dc2626;
+  --color-brand-gold: #d97706;
+  --color-canvas: #f8fafc;
+}
+
+:root {
+  --background: var(--color-canvas);
+  --foreground: #1e293b;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}

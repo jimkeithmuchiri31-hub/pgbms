@@ -64,10 +64,26 @@ MEMBERS_MATRIX = {
     "OFFICER": ["view", "edit"],
     "TREASURER": ["view"],
 }
-
 for role_name, actions in MEMBERS_MATRIX.items():
     for action in actions:
         ensure_role_permission(role_name, "members", action)
+
+ATTENDANCE_MATRIX = {
+    "ADMIN": ["view", "create", "edit", "delete"],
+    "OFFICER": ["view", "create", "edit"],
+    "TREASURER": ["view"],
+}
+for role_name, actions in ATTENDANCE_MATRIX.items():
+    for action in actions:
+        ensure_role_permission(role_name, "attendance", action)
+
+db.commit()
+
+MEETING_TYPES = ["Saturday Training", "General Meeting", "Officer Meeting", "Crash Program"]
+for name in MEETING_TYPES:
+    existing = db.query(models.MeetingType).filter(models.MeetingType.name == name).first()
+    if not existing:
+        db.add(models.MeetingType(name=name))
 
 db.commit()
 db.close()

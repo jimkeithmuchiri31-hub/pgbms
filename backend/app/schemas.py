@@ -1,6 +1,6 @@
 import uuid
 from datetime import date, datetime
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel, ConfigDict
 
 
@@ -35,6 +35,7 @@ class MemberCreate(BaseModel):
     church_group: Optional[str] = None
     membership_type: Optional[str] = None
     member_category: str = "brigadier"
+    program_branch: Optional[str] = None
     join_date: Optional[date] = None
 
 
@@ -52,6 +53,7 @@ class MemberUpdate(BaseModel):
     church_group: Optional[str] = None
     membership_type: Optional[str] = None
     member_category: Optional[str] = None
+    program_branch: Optional[str] = None
     status: Optional[str] = None
 
 
@@ -73,7 +75,39 @@ class MemberOut(BaseModel):
     church_group: Optional[str]
     membership_type: Optional[str]
     member_category: str
+    program_branch: Optional[str]
     status: str
     join_date: Optional[date]
     is_active: bool
+    created_at: datetime
+
+
+class MeetingTypeOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    name: str
+
+
+class AttendanceMark(BaseModel):
+    member_id: uuid.UUID
+    status: str
+    remarks: Optional[str] = None
+
+
+class AttendanceBulkCreate(BaseModel):
+    meeting_type_id: uuid.UUID
+    date: date
+    records: List[AttendanceMark]
+
+
+class AttendanceOut(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    member_id: uuid.UUID
+    meeting_type_id: uuid.UUID
+    date: date
+    status: str
+    remarks: Optional[str]
     created_at: datetime

@@ -63,6 +63,7 @@ class Member(Base):
     church_group = Column(String(100))
     membership_type = Column(String(50))
     member_category = Column(String(20), nullable=False, server_default="brigadier")  # 'officer' or 'brigadier'
+    program_branch = Column(String(20))  # 'boys_brigade' or 'girls_brigade'
     status = Column(String(30), default="active")
     join_date = Column(Date)
     is_active = Column(Boolean, default=True)
@@ -281,7 +282,7 @@ class Event(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name = Column(String(200), nullable=False)
-    event_type = Column(String(50), nullable=False)  # event, camp, trip, program
+    event_type = Column(String(50), nullable=False)
     description = Column(Text)
     location = Column(String(255))
     start_date = Column(Date, nullable=False)
@@ -311,7 +312,7 @@ class EventRequirement(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     event_id = Column(UUID(as_uuid=True), ForeignKey("events.id"), nullable=False)
-    requirement_type = Column(String(50), nullable=False)  # transport, meals, materials, other
+    requirement_type = Column(String(50), nullable=False)
     description = Column(String(255))
     estimated_cost = Column(Numeric(12, 2))
     actual_cost = Column(Numeric(12, 2))
@@ -428,7 +429,7 @@ class Meeting(Base):
     __tablename__ = "meetings"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    meeting_type = Column(String(30), nullable=False)  # officer, general
+    meeting_type = Column(String(30), nullable=False)
     date = Column(DateTime, nullable=False)
     agenda = Column(Text)
     minutes = Column(Text)
